@@ -1,4 +1,5 @@
 createGrid();
+defineEvents();
 
 function createGrid() {
     for (let row = 1; row <= 16; row++) {
@@ -11,4 +12,14 @@ function createGrid() {
             container.appendChild(gridSpot);
         };
     };
+};
+
+function defineEvents() {
+    const gridSpots = document.querySelectorAll(".container > div");
+
+    gridSpots.forEach((gridSpot) => {
+        gridSpot.addEventListener("mouseenter", () => {
+            gridSpot.style.backgroundColor = "black";
+        });
+      });
 };
