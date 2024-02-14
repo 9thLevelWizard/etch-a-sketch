@@ -1,17 +1,6 @@
-createGrid(16);
-
-const gridSpots = document.querySelectorAll(".container > div");
-
-gridSpots.forEach((gridSpot) => {
-    gridSpot.addEventListener("mouseenter", colorBlack);
-});
-
-const sizeButton = document.querySelector(".size-button");
-let gridSize = sizeButton.addEventListener("click", getGridSize);
-
-function getGridSize() {
-    return parseInt(prompt("How many squares per side would you like for your sketch?", 16));
-};
+createGrid(16); // default grid size 16*16
+addColoringEvent();
+addResizingEvent();
 
 function createGrid(gridSize) {
     const container = document.querySelector(".container");
@@ -26,6 +15,33 @@ function createGrid(gridSize) {
     };
 };
 
-function colorBlack() {
+function deleteGrid() {
+    const gridSpots = document.querySelectorAll(".container > div");
+    gridSpots.forEach((gridSpot) => {
+        gridSpot.remove();
+    });
+};
+
+function resizeGrid() {
+    let gridSize = parseInt(prompt("How many squares per side would you like for your sketch?", 16));
+    deleteGrid();
+    createGrid(gridSize);
+    addColoringEvent();
+};
+
+function addColoringEvent() {
+    const gridSpots = document.querySelectorAll(".container > div");
+
+    gridSpots.forEach((gridSpot) => {
+        gridSpot.addEventListener("mouseenter", colorGridSpotBlack);
+    });
+};
+
+function addResizingEvent() {
+    const sizeButton = document.querySelector(".size-button");
+    sizeButton.addEventListener("click", resizeGrid);
+};
+
+function colorGridSpotBlack() {
     this.style.backgroundColor = "black";
-}
+};
