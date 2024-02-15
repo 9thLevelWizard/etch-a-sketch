@@ -26,8 +26,6 @@ body {
 }
 
 .container * {
-    min-height: 29.25px; 
-    min-width: 29.25px;
     padding: 0;
     margin: 0;
     border: 1px solid black;

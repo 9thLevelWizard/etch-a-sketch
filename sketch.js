@@ -10,6 +10,8 @@ function createGrid(gridSize) {
         for (let column = 1; column <= gridSize; column++) {
             const gridSpot = document.createElement("div");
             gridSpot.className = `grid-spot-row${row}-column${column}`;
+            gridSpot.style.minHeight = `${(500 / gridSize) - 2}px`; // 500px (container size) divided by gridSize (number of sides), subtracted by 2 (1px border on either side) = properly fitting grid spot size
+            gridSpot.style.minWidth = `${(500 / gridSize) - 2}px`; //
             container.appendChild(gridSpot);
         };
     };
@@ -23,10 +25,15 @@ function deleteGrid() {
 };
 
 function resizeGrid() {
-    let gridSize = parseInt(prompt("How many squares per side would you like for your sketch?", 16));
-    deleteGrid();
-    createGrid(gridSize);
-    addColoringEvent();
+    let gridSize = parseInt(prompt("How many squares per side would you like for your sketch? Maximum limit: 100", 16));
+    if (gridSize <= 100) {
+        deleteGrid();
+        createGrid(gridSize);
+        addColoringEvent();
+    }
+    else {
+        alert("Please keep the number of squares per side to less than 100, including.");
+    };
 };
 
 function addColoringEvent() {
