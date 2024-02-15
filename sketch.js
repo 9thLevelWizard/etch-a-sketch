@@ -3,22 +3,22 @@ addColoringEvent();
 addResizingEvent();
 
 function createGrid(gridSize) {
-    const container = document.querySelector(".container");
+    const grid = document.querySelector(".grid");
 
     for (let row = 1; row <= gridSize; row++) {
 
         for (let column = 1; column <= gridSize; column++) {
             const gridSpot = document.createElement("div");
             gridSpot.className = `grid-spot-row${row}-column${column}`;
-            gridSpot.style.minHeight = `${(500 / gridSize) - 2}px`; // 500px (container size) divided by gridSize (number of sides), subtracted by 2 (1px border on either side) = properly fitting grid spot size
+            gridSpot.style.minHeight = `${(500 / gridSize) - 2}px`; // 500px (grid width) divided by gridSize (number of sides), subtracted by 2 (1px border on either side) = properly fitting grid spot size
             gridSpot.style.minWidth = `${(500 / gridSize) - 2}px`; //
-            container.appendChild(gridSpot);
+            grid.appendChild(gridSpot);
         };
     };
 };
 
 function deleteGrid() {
-    const gridSpots = document.querySelectorAll(".container > div");
+    const gridSpots = document.querySelectorAll(".grid > div");
     gridSpots.forEach((gridSpot) => {
         gridSpot.remove();
     });
@@ -37,7 +37,7 @@ function resizeGrid() {
 };
 
 function addColoringEvent() {
-    const gridSpots = document.querySelectorAll(".container > div");
+    const gridSpots = document.querySelectorAll(".grid > div");
 
     gridSpots.forEach((gridSpot) => {
         gridSpot.addEventListener("mouseenter", colorGridSpotBlack);
