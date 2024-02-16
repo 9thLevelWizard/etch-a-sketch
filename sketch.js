@@ -36,19 +36,40 @@ function resizeGrid() {
     };
 };
 
-function addColoringEvent() {
-    const gridSpots = document.querySelectorAll(".grid > div");
-
-    gridSpots.forEach((gridSpot) => {
-        gridSpot.addEventListener("mouseenter", colorGridSpotBlack);
-    });
-};
-
 function addResizingEvent() {
     const sizeButton = document.querySelector(".size-button");
     sizeButton.addEventListener("click", resizeGrid);
 };
 
-function colorGridSpotBlack() {
-    this.style.backgroundColor = "black";
+function getRandomRGBColor() {
+    let RGB1 = Math.floor(Math.random() * (255 - 0 + 1) + 0);
+    let RGB2 = Math.floor(Math.random() * (255 - 0 + 1) + 0);
+    let RGB3 = Math.floor(Math.random() * (255 - 0 + 1) + 0);
+    let RGBcolor = `rgb(${RGB1}, ${RGB2}, ${RGB3})`;
+
+    return RGBcolor;
+};
+
+function addColoringEvent() {
+    const gridSpots = document.querySelectorAll(".grid > div");
+    const colorOptions = document.querySelector(".color-options");
+    let checkedColor = document.querySelector('input[name="color"]:checked');
+    
+    colorOptions.addEventListener("change", () => {
+        checkedColor = document.querySelector('input[name="color"]:checked');
+    });
+    
+    gridSpots.forEach((gridSpot) => {
+        gridSpot.addEventListener("mouseenter", () => {
+            if (checkedColor.id === "black") {
+                gridSpot.style.backgroundColor = "black";
+            };
+            if (checkedColor.id === "white") {
+                gridSpot.style.backgroundColor = "white";
+            };
+            if (checkedColor.id === "colorfy") {
+                gridSpot.style.backgroundColor = getRandomRGBColor();
+            };
+        });
+    });
 };
