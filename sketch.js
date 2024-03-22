@@ -1,11 +1,11 @@
+const grid = document.querySelector(".grid");
+
 createGrid(16); // default grid size 16*16
 addColoringEvent();
-addResizingEvent();
+resizeGrid();
 addWipeEvent();
 
 function createGrid(gridSize) {
-    const grid = document.querySelector(".grid");
-
     for (let row = 1; row <= gridSize; row++) {
 
         for (let column = 1; column <= gridSize; column++) {
@@ -18,25 +18,6 @@ function createGrid(gridSize) {
     };
 };
 
-function deleteGrid() {
-    const gridSpots = document.querySelectorAll(".grid > div");
-    gridSpots.forEach((gridSpot) => {
-        gridSpot.remove();
-    });
-};
-
-function resizeGrid() {
-    let gridSize = parseInt(prompt("How many squares per side would you like for your sketch? Maximum limit: 100", 16));
-    if (gridSize <= 100) {
-        deleteGrid();
-        createGrid(gridSize);
-        addColoringEvent();
-    }
-    else {
-        alert("Please keep the number of squares per side to less than 100, including.");
-    };
-};
-
 function wipeGrid() {
     const gridSpots = document.querySelectorAll(".grid > div");
     gridSpots.forEach((gridSpot) => {
@@ -44,9 +25,21 @@ function wipeGrid() {
     });
 };
 
-function addResizingEvent() {
+function resizeGrid() {
     const sizeButton = document.querySelector(".size-button");
-    sizeButton.addEventListener("click", resizeGrid);
+
+    sizeButton.addEventListener("click", () => {
+        let gridSize = parseInt(prompt("How many squares per side would you like for your sketch? Maximum limit: 100", 16));
+
+        if (gridSize <= 100) {
+            grid.replaceChildren();
+            createGrid(gridSize);
+            addColoringEvent();
+        }
+        else {
+            alert("Please keep the number of squares per side to less than 100, including.");
+        };
+    });
 };
 
 function addWipeEvent() {
