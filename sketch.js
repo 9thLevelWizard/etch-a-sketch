@@ -3,7 +3,7 @@ const grid = document.querySelector(".grid");
 createGrid(16); // default grid size 16*16
 addColoringEvent();
 resizeGrid();
-addWipeEvent();
+wipeGrid();
 
 function createGrid(gridSize) {
     for (let row = 1; row <= gridSize; row++) {
@@ -16,13 +16,6 @@ function createGrid(gridSize) {
             grid.appendChild(gridSpot);
         };
     };
-};
-
-function wipeGrid() {
-    const gridSpots = document.querySelectorAll(".grid > div");
-    gridSpots.forEach((gridSpot) => {
-        gridSpot.style.backgroundColor = "white";
-    });
 };
 
 function resizeGrid() {
@@ -42,9 +35,15 @@ function resizeGrid() {
     });
 };
 
-function addWipeEvent() {
+function wipeGrid() {
     const wipeButton = document.querySelector(".wipe-button");
-    wipeButton.addEventListener("click", wipeGrid);
+    
+    wipeButton.addEventListener("click", () => {
+        const gridSpots = document.querySelectorAll(".grid > div");
+        gridSpots.forEach((gridSpot) => {
+            gridSpot.style.backgroundColor = "white";
+        });
+    });
 };
 
 function getRandomRGBColor() {
