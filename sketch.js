@@ -37,7 +37,7 @@ function resizeGrid() {
 
 function wipeGrid() {
     const wipeButton = document.querySelector(".wipe-button");
-    
+
     wipeButton.addEventListener("click", () => {
         const gridSpots = document.querySelectorAll(".grid > div");
         gridSpots.forEach((gridSpot) => {
@@ -50,9 +50,8 @@ function getRandomRGBColor() {
     let RGB1 = Math.floor(Math.random() * (255 - 0 + 1) + 0);
     let RGB2 = Math.floor(Math.random() * (255 - 0 + 1) + 0);
     let RGB3 = Math.floor(Math.random() * (255 - 0 + 1) + 0);
-    let RGBcolor = `rgb(${RGB1}, ${RGB2}, ${RGB3})`;
-
-    return RGBcolor;
+    
+    return `rgb(${RGB1}, ${RGB2}, ${RGB3})`;
 };
 
 function addColoringEvent() {
