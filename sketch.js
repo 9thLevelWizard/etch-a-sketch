@@ -1,6 +1,7 @@
 createGrid(16); // default grid size 16*16
 addColoringEvent();
 addResizingEvent();
+addWipeEvent();
 
 function createGrid(gridSize) {
     const grid = document.querySelector(".grid");
@@ -36,9 +37,21 @@ function resizeGrid() {
     };
 };
 
+function wipeGrid() {
+    const gridSpots = document.querySelectorAll(".grid > div");
+    gridSpots.forEach((gridSpot) => {
+        gridSpot.style.backgroundColor = "white";
+    });
+};
+
 function addResizingEvent() {
     const sizeButton = document.querySelector(".size-button");
     sizeButton.addEventListener("click", resizeGrid);
+};
+
+function addWipeEvent() {
+    const wipeButton = document.querySelector(".wipe-button");
+    wipeButton.addEventListener("click", wipeGrid);
 };
 
 function getRandomRGBColor() {

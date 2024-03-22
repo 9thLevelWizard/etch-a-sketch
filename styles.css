@@ -6,6 +6,7 @@ body {
 .container {
     display: flex;
     flex-direction: column;
+    height: 100vh;
     overflow: hidden;
 }
 
@@ -62,7 +63,13 @@ body {
     gap: 16px;
 }
 
-.size-button {
+.screen-right {
+    display: flex;
+    align-items: flex-end;
+}
+
+.size-button,
+.wipe-button {
     width: 100px;
     height: 100px;
     background-color: white;
